@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>To-do list</title>
+  <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <style>
+  	/*body{
+  		background-color: #FFE5B4;
+  	}*/
+body{
+	background: rgba(255, 229, 180, 1);
+
+}
+.header{
+	width: 100%;
+	height: 100px;
+	background: rgba(61, 180, 137, 1);
+	text-decoration: none;
+	color: black;
+	font-family: serif;
+	font-size: 40px;
+	position: relative;
+	top: 0;
+	left: 0;
+	padding-top: 20px;
+    text-align: center;	
+}
+
+
+#myTask{
+	border: 3px solid black;
+	border-radius: 20px;
+	text-align: center;
+	background: rgba(255, 229, 180, 1);
+}
+
+.addTask{
+	font-size: 30px;
+	background: transparent;
+	border: none;
+}
+.mytaskheader{
+ font-size: 30px;
+ font-family:serif;
+ text-align: center;
+}
+#addedtaskbox{
+	width: 80%;
+	height: 60vh;
+	margin: auto;
+	text-align: center;
+}
+input{
+	background: rgba(255, 229, 180, 1);
+}
+
+.myDiv.checked{
+background: rgba(255, 229, 180, 1);
+  color: red;
+  text-decoration: line-through;
+}
+.myDiv{
+	font-size: 20px;
+	position: relative;
+	border: 0.2px solid black;
+	border-radius: 5px;
+	height: 50px;
+	padding: 12px 8px 12px 40px;
+}
+.myDiv:hover{
+	background: #ddd;
+}
+
+.close{
+	position:absolute;
+	top: -1px;
+	right:0;
+	border: 2px solid black;
+	border-radius: 5px;
+	height: 50px;
+	width: 50px;
+	font-size: 40px;
+	text-align: center;
+	background: rgba(255, 229, 180, 1);
+}
+.remove{
+	display: none;
+}
+.container{
+ width: 100%;
+	position: relative;
+}
+#notes{
+	border: 3px solid black;
+	border-radius: 20px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: rgba(61, 237, 151, 1);
+}
+#myNotes{
+	background: rgba(61, 237, 151, 1);
+	border-radius: 10px;
+	width: 100%;
+	font-size: 15px;
+}
+#toggleMenu{
+	border: none;
+	background: transparent;
+	position: absolute;
+	top: 15px;
+	left: 30px;
+	font-size: 45px;
+
+}
+#toggleMenu:hover{
+	color: white;
+}
+.sidenav{
+	background-color: #B0FC38;
+	height: 100%;
+	width: 350px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	text-align: center;
+	transform: translate(-100%);
+	transition: 0.25s ease-in-out;
+}
+.closeBtn{
+	font-size: 40px;
+	border: none;
+	background: transparent;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+ul li {
+	margin-top: 40px;
+	font-size: 30px;
+	display: block;
+}
+
+ul li a{
+		text-decoration: none;
+		color: black;
+		text-align: center;
+}
+.show{
+	transform: translate(0%);
+}
+#navHeader{
+	margin-top: 50px;
+}
+#imgContainer{
+	border: 2px solid black;
+	position: relative;
+	width: 500px;
+	height: 325px;
+  overflow: hidden;
+}
+.slide{
+	border: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
+  transition: all 0.5s ease-in-out;
+	}
+
+	.buttons{
+		display: flex;
+		justify-content: left;
+		margin-top:20px;
+		margin-left: 150px;
+	}
+	#prev, #next{
+		display: inline-block;
+		color: white;
+		background-image: linear-gradient(to right, black, grey);
+		text-decoration: none;
+		padding: 10px 30px;
+		border: 3px solid #3c67e3;
+		border-radius: 10px;
+	}
+	#prev:hover{
+		animation: pulsate 1s ease-in-out;
+	}
+	#next:hover{
+		animation: pulsate 1s ease-in-out;
+	}
+
+	@keyframes pulsate{
+		0%{
+			box-shadow: 
+			0 0 25px #5ddcff,
+			0 0 50px #4e00c2;
+		}
+	}
+
+
+  </style>
+
+</head>
+<body>
+		<div class='header'>
+To-do List&ensp;<i class="fa-solid fa-file-pen"></i>
+</div>
+<button id="toggleMenu"><i class="fa-solid fa-bars"></i></button>
+<aside class="sidenav">
+	<div class='sidenavHeader'>
+	<button class='closeBtn'><i class="fa-solid fa-xmark"></i></button>
+</div>
+		<h1 id='navHeader'>My Nav</h1>
+		<ul id='sidenavLinks'>
+			<li><a href="">Link1</a></li>
+	    <li><a href="">Link2</a></li>
+	    <li><a href="">Link3</a></li>
+	  </ul>
+</aside>
+<br>
+<div class="container">
+	<div class="row">
+<div class='col-sm-6' id="myTask">
+	<div class="mytaskheader"><b>My Tasks for today&ensp;<i class="fa-solid fa-pen"></i></b></div>
+	<br>
+	<button class="addTask"><i class="fa-solid fa-plus"></i></button>
+	<input type="text" id="text" placeholder="Add task..." value="">
+	<br><br>
+	<div id="addedtaskbox">
+		<div id="message"></div>
+	</div>
+</div>
+<div class="col-sm-5" id="notes">
+<div class="mytaskheader">
+	<b>My Notes</b>&emsp;<i class="fa-solid fa-note-sticky"></i>
+	</div>
+	<textarea id="myNotes" rows="23" cols="50">
+	</textarea>
+</div>
+</div>
+<br><br>
+<div class="container2">
+<h1>Motivational Quotes</h1>
+<div class="col-sm-6" id="imgContainer">
+	<div class="slide">
+		<img src="https://wallpaperaccess.com/full/1225786.jpg" width="100%" height="100%"/>
+	</div>
+	<div class="slide">
+		<img src="https://i.pinimg.com/originals/f6/1e/06/f61e0602c3230cdc81f7a875b6a3e9d9.png" width="100%" height="100%"/>
+	</div>
+		<div class="slide">
+		<img src="https://static-cse.canva.com/blob/132890/You-cannot-afford-to-live-in-potential-for-the-rest-of-your-life-at-some-point-you-have-to-unleash-the-potential-and-make-your-move.jpg" width="100%" height="100%"/>
+	</div>
+	</div>
+<div class="buttons">
+		<button id="prev">Prev</button>
+		&ensp;
+		<button id="next">Next</button>
+	</div>
+</div>
+<script type="text/javascript">
+	let addTask=document.querySelector(".addTask");
+    let message=document.querySelector("#message");
+let text=document.querySelector("#text");
+
+//use press enter to submit instead of + button
+	text.addEventListener("keyup", function(e){
+		if (e.keyCode===13){
+		let newDiv=document.createElement("div");
+    newDiv.className="myDiv";
+    let space=document.createElement("br");
+     let mytext=text.value;
+	 let textNode = document.createTextNode(mytext);
+	 let span= document.createElement("span");
+	  var txt = document.createTextNode("\u00D7");
+	  span.appendChild(txt);
+    span.className="close";
+	 newDiv.appendChild(textNode);
+   newDiv.appendChild(span);
+      message.appendChild(newDiv); 
+       text.value="";
+      } 
+
+     /* message.appendChild(space);  */
+    });
+
+let span=document.querySelector(".close")
+let div=document.querySelector(".newDiv");
+ let taskbox=document.querySelector("#addedtaskbox");
+ 
+
+message.addEventListener('click', function(e){
+	if(e.target.className=== 'myDiv'){
+		e.target.classList.add("checked");
+	}
+	else if(e.target.className==='myDiv checked'){
+	e.target.classList.remove("checked");
+}
+else if(e.target.className="close"){
+	e.target.parentElement.classList.add("remove");
+}
+else{
+  return false;
+}
+});
+
+let sidenav=document.querySelector(".sidenav");
+let toggle=document.querySelector("#toggleMenu");
+toggle.addEventListener("click", function(){
+ sidenav.classList.toggle("show");
+});
+
+let closeBtn=document.querySelector(".closeBtn");
+closeBtn.addEventListener("click",function(){
+	sidenav.classList.remove("show");
+});
+
+ let next=document.querySelector("#next");
+ let prev=document.querySelector("#prev");
+let slides=document.querySelectorAll(".slide");
+//*querySelectALL to get an array of slides!
+
+slides.forEach(function(slide, index){
+//Template literals= backticks ``
+//Used to interpolate variables and expressions into strings! (ES5)
+//Syntax is ${...}
+//slide.style.left=`${index*100}%`;
+//or
+slide.style.left= (index * "100")+ "%";
+});
+
+let counter=0;
+
+next.addEventListener("click", function(){
+	counter++;
+	moveSlide();
+});
+
+prev.addEventListener("click", function(){
+	counter--;
+	moveSlide();
+});
+
+function moveSlide(){
+ 
+if(counter===slides.length){
+	counter=0;
+}
+else if(counter<0){
+counter= slides.length-1;
+}
+
+slides.forEach(function(slide){
+slide.style.transform=`translateX(-${counter*100}%)`;
+});
+
+}
+</script>
+</body>
+</html>
